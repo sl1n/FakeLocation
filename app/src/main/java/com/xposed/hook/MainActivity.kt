@@ -136,16 +136,6 @@ class MainActivity : AppCompatActivity() {
                         )
                     }
                 }
-                IconButton(onClick = {
-                    startActivity(
-                        Intent(this@MainActivity, LuckMoneySetting::class.java)
-                    )
-                }) {
-                    Icon(
-                        Icons.Filled.MoreVert,
-                        contentDescription = stringResource(R.string.wechat_hook)
-                    )
-                }
             }
         }
     }

@@ -7,7 +7,6 @@ import com.xposed.hook.config.Constants
 import com.xposed.hook.config.PkgConfig
 import com.xposed.hook.location.LocationHook
 import com.xposed.hook.utils.CellLocationHelper
-import com.xposed.hook.wechat.LuckyMoneyHook
 import de.robv.android.xposed.IXposedHookLoadPackage
 import de.robv.android.xposed.XSharedPreferences
 import de.robv.android.xposed.XposedBridge
@@ -20,11 +19,9 @@ class Main : IXposedHookLoadPackage {
 
     override fun handleLoadPackage(loadPackageParam: LoadPackageParam) {
         Log.d("***********************", loadPackageParam.processName)
-        LuckyMoneyHook.disableTinker(loadPackageParam)
         Handler(Looper.getMainLooper()).post {
             try {
                 val packageName = loadPackageParam.packageName
-                LuckyMoneyHook.hook(loadPackageParam)
                 val preferences = XSharedPreferences(BuildConfig.APPLICATION_ID, Constants.PREF_FILE_NAME)
                 if (!preferences.getBoolean(packageName, false))
                     return@post
